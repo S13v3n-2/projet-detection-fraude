@@ -1,0 +1,13 @@
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Données volumineuses
+data/*.csv
+
+# IDE
+.vscode/
+.idea/
