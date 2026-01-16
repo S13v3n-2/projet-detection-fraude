@@ -60,3 +60,6 @@ max_delta_step : En cas de déséquilibre extrême (encore plus que le tien), ce
 
 
 ![img_3.png](img_3.png)
+
+
+Meilleurs paramètres trouvés : {'model__colsample_bytree': 0.8, 'model__learning_rate': 0.1, 'model__max_depth': 5, 'model__min_child_weight': 1, 'model__n_estimators': 300, 'model__scale_pos_weight': 10, 'model__subsample': 0.8}
