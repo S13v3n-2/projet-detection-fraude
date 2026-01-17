@@ -63,3 +63,16 @@ max_delta_step : En cas de déséquilibre extrême (encore plus que le tien), ce
 
 
 Meilleurs paramètres trouvés : {'model__colsample_bytree': 0.8, 'model__learning_rate': 0.1, 'model__max_depth': 5, 'model__min_child_weight': 1, 'model__n_estimators': 300, 'model__scale_pos_weight': 10, 'model__subsample': 0.8}
+
+
+
+# Sauvegarde simple avec seuil
+joblib.dump(random_search.best_estimator_, 'random_forest_pure.pkl')
+
+# Utilisation en production
+model = joblib.load('random_forest_pure.pkl')
+seuil_expert = 0.9
+
+def prediction_service(data):
+    prob = model.predict_proba(data)[:, 1]
+    return (prob >= seuil_expert).astype(int)
