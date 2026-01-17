@@ -3,7 +3,9 @@ from pydantic import BaseModel
 import joblib
 import pandas as pd
 import numpy as np
+import os
 
+os.getcwd()
 # 1. Initialisation de l'API
 app = FastAPI(
     title="Système de Détection de Fraude et d'Arnaque",
@@ -11,13 +13,14 @@ app = FastAPI(
 )
 
 # 2. Chargement des modèles au démarrage de l'API
-# Assure-toi que tes fichiers .pkl sont bien dans le dossier /models
+# Assure-toi que tes fichiers .pkl sont bien dans le dossier /Models
 models = {}
+# Modification de models en Models pour correspond au nom du dossier
 try:
-    models["xgboost"] = joblib.load("models/model_fraude_xgboost_final_2.pkl")
-    models["random_forest"] = joblib.load("models/model_rf_final.pkl")
-    models["logistic_regression"] = joblib.load("models/model_lr_final.pkl")
-    models["isolation_forest"] = joblib.load("models/model_unsup_final.pkl")
+    models["xgboost"] = joblib.load("Models/model_fraude_xgboost_final_2.pkl")
+    models["random_forest"] = joblib.load("Models/model_rf_final.pkl")
+    models["logistic_regression"] = joblib.load("Models/model_lr_final.pkl")
+    models["isolation_forest"] = joblib.load("Models/model_unsup_final.pkl")
     print(" Tous les modèles ont été chargés.")
 except Exception as e:
     print(f"Erreur lors du chargement des modèles : {e}")
@@ -40,13 +43,16 @@ class Transaction(BaseModel):
 # 4. Route de prédiction
 @app.post("/predict/{model_name}")
 async def predict(model_name: str, data: Transaction):
+    """
+    Model possible : xgboost, random_forest, logistic_regression ou isolation_forest
+    """
     # Vérifier si le modèle demandé est chargé
     if model_name not in models:
         raise HTTPException(status_code=404, detail="Modèle non trouvé. Utilisez : xgboost, random_forest, logistic_regression ou isolation_forest.")
     
     # Transformer les données reçues en DataFrame (format attendu par tes Pipelines)
     input_df = pd.DataFrame([data.dict()])
-    
+
     # Sélection du modèle
     model = models[model_name]
     
