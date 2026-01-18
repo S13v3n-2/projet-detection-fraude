@@ -108,8 +108,7 @@ Exemple :
     "trans_num": "2da90c7d74bd46a0caf3777415b3ebd3",
     "unix_time": 1371816865,
     "merch_lat": 33.986391,
-    "merch_long": -81.200714,
-    "is_fraud": 0
+    "merch_long": -81.200714
 }
 ```
 ### Interpretation des Resultats
