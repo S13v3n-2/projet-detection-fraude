@@ -26,7 +26,7 @@ Le projet utilise le dataset [Credit Card Fraud Detection](https://www.kaggle.co
 * **Volume :** ~1,85 million de transactions.
 * **Variables clés :**
     * `amt` : Montant de la transaction.
-    * `zip`, `lat`, `long` : Données géographiques pour l'analyse de distance.
+    * `zip`, : Données géographiques pour l'analyse de distance.
     * `category` : Type de dépense (voyage, alimentation, etc.).
     * `is_fraud` : Variable cible (0 ou 1).
 * **Contrainte majeure :** Le jeu de données présente un fort déséquilibre de classes (moins de 1% de fraudes), nécessitant des techniques de rééchantillonnage (SMOTE) ou des fonctions de coût adaptées.
