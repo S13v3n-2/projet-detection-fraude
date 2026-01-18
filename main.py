@@ -1,10 +1,14 @@
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
+from typing import Dict, Any
 import joblib
 import pandas as pd
-import numpy as np
-import os
+import os,sys
+from eda import transformers_ML
 
+# On crée une entrée dans sys.modules pour que 'transformers' pointe vers votre fichier
+sys.modules['transformers'] = transformers_ML
+sys.modules['transformers_ML'] = transformers_ML
 os.getcwd()
 # Initialisation de l'API
 app = FastAPI(
@@ -26,17 +30,22 @@ except Exception as e:
 
 # Définition du schéma des données d'entrée
 class Transaction(BaseModel):
-    amt: float              # Montant de la transaction
-    zip: int                # Code postal
-    city_pop: int           # Population de la ville
-    age_at_transaction: int # Age calculé au moment de la transaction
-    unix_time: int          # Timestamp de la transaction
-    state: str              # État (ex: 'NY')
-    city: str               # Ville
-    gender: str             # Genre ('M' ou 'F')
-    category: str           # Catégorie d'achat
-    merchant: str           # Nom du marchand
-    job: str                # Métier du client
+    # --- COLONNES OBLIGATOIRES (Essentielles pour tes modèles) ---
+    amt: float
+    category: str
+    gender: str
+    city_pop: int
+    trans_date_trans_time: str
+    job: str
+    city: str
+    zip: int
+    state: str
+    merchant: str
+    dob: str
+
+    # --- AUTORISER TOUT LE RESTE ---
+    # Cette configuration permet de recevoir n'importe quel champ non spécifié
+    model_config = ConfigDict(extra='allow')
 
 # Fonction utilitaire pour faire une prédiction, elle est réutilisée par toutes les routes
 def make_prediction(model_name: str, data: Transaction):
