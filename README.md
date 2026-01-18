@@ -85,6 +85,33 @@ L'API accepte des objets JSON representant une transaction. Seules les colonnes 
 | merchant | str | Nom du marchand |
 | dob | str | Date de naissance du client |
 
+Exemple :
+```
+{
+    "trans_date_trans_time": "2020-06-21 12:14:25",
+    "cc_num": 2291163933867244,
+    "merchant": "fraud_Kirlin and Sons",
+    "category": "personal_care",
+    "amt": 2.86,
+    "first": "Jeff",
+    "last": "Elliott",
+    "gender": "M",
+    "street": "351 Darlene Green",
+    "city": "Columbia",
+    "state": "SC",
+    "zip": 29209,
+    "lat": 33.9659,
+    "long": -80.9355,
+    "city_pop": 333497,
+    "job": "Mechanical engineer",
+    "dob": "1968-03-19",
+    "trans_num": "2da90c7d74bd46a0caf3777415b3ebd3",
+    "unix_time": 1371816865,
+    "merch_lat": 33.986391,
+    "merch_long": -81.200714,
+    "is_fraud": 0
+}
+```
 ### Interpretation des Resultats
 * V1, V2, V3 (Supervises) : Retournent un code (0: Normal, 1: Fraude, 2: Arnaque).
 * V4 (Non-Supervise) : Retourne un diagnostic d'anomalie ("Anomalie detectee" ou "Transaction normale").
