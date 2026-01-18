@@ -6,6 +6,4 @@ scikit-learn
 xgboost
 matplotlib
 seaborn
-tensorflow
 pydantic
-numpy

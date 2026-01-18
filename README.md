@@ -33,9 +33,10 @@ Le projet utilise le dataset [Credit Card Fraud Detection](https://www.kaggle.co
 ## 4. Structure du Dépôt
 * `notebooks/` : Exploration des données (EDA) et modélisation.
 * `data/` : Fichier CSV du jeu de données.
-* `src/` : Scripts de prétraitement et de scoring.
+* `eda/` : Scripts de prétraitement, scoring, transformers.
 * `Models/` : Contient les modéles non-supervisé et superviser (fichier.plk)
 * `main.py` : Contient le code de l'api
+* `Dockerfile` : Image docker du projet
 
 ## 5. Utilisation du projet
 1. Faire un git clone du projet
