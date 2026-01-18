@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import warnings
 
-
+# Class transformer pour traiter les données "trans_date_trans_time" et "dob"
 class TransactionDateTransformer(BaseEstimator, TransformerMixin):
     def __init__(self, trans_date_col='trans_date_trans_time', dob_col='dob'):
         self.trans_date_col = trans_date_col
